@@ -8,7 +8,7 @@ export default function AddSchool() {
     const onSubmit = async(data)=> {
         setStatus("Uploading...");
         try {
-            const formData = new FromData();
+            const formData = new FormData();
             formData.append("name", data.name);
             formData.append("address", data.address);
             formData.append("city", data.city);
@@ -37,27 +37,28 @@ export default function AddSchool() {
 
     return (
     <div className="max-w-2xl mx-auto p-6">
-      <h1 className="text-2xl font-bold mb-4">Add School</h1>
+      <h1 className="text-2xl font-bold mb-6 text-blue-600">Add School</h1>
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-        <input {...register("name", { required: "Name required" })} placeholder="School Name" />
-        {errors.name && <p>{errors.name.message}</p>}
 
-        <textarea {...register("address", { required: "Address required" })} placeholder="Address" />
-        {errors.address && <p>{errors.address.message}</p>}
+        <input {...register("name", { required: "Name required" })} placeholder="School Name" className="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500"/>
+        {errors.name && (<p className="text-red-500 text-sm mt-1">{errors.name.message}</p>)}
 
-        <input {...register("city", { required: "City required" })} placeholder="City" />
-        <input {...register("state", { required: "State required" })} placeholder="State" />
+        <textarea {...register("address", { required: "Address required" })} placeholder="Address" className="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500"/>
+        {errors.address && (<p className="text-red-500 text-sm mt-1">{errors.address.message}</p>)}
 
-        <input {...register("contact", { required: "Contact required", pattern: { value: /^\d{10}$/, message: "Enter 10 digit number" } })} placeholder="Contact (10 digits)" />
-        {errors.contact && <p>{errors.contact.message}</p>}
+        <input {...register("city", { required: "City required" })} placeholder="City" className="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500" />
+        <input {...register("state", { required: "State required" })} placeholder="State" className="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500" />
 
-        <input {...register("email_id", { required: "Email required", pattern: { value: /^\S+@\S+$/i, message: "Enter valid email" } })} placeholder="Email" />
-        {errors.email_id && <p>{errors.email_id.message}</p>}
+        <input {...register("contact", { required: "Contact required", pattern: { value: /^\d{10}$/, message: "Enter 10 digit number" } })} placeholder="Contact (10 digits)" className="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500" />
+        {errors.contact && (<p className="text-red-500 text-sm mt-1">{errors.contact.message}</p>)}
 
-        <input type="file" accept="image/*" {...register("image", { required: "Image required" })} />
-        {errors.image && <p>{errors.image.message}</p>}
+        <input {...register("email_id", { required: "Email required", pattern: { value: /^\S+@\S+$/i, message: "Enter valid email" } })} placeholder="Email" className="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500"/>
+        {errors.email_id && (<p className="text-red-500 text-sm mt-1">{errors.email_id.message}</p>)}
 
-        <button type="submit">Submit</button>
+        <input type="file" accept="image/*" {...register("image", { required: "Image required" })} className="w-full p-2 border rounded"/>
+        {errors.image && (<p className="text-red-500 text-sm mt-1">{errors.image.message}</p>)}
+
+        <button type="submit" className="w-50 bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition">Submit</button>
       </form>
 
       {status && <p className="mt-4">{status}</p>}
