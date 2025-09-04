@@ -14,33 +14,22 @@ export default function ShowSchools() {
   }, []);
 
   return (
-    <div className="p-4 sm:p-6">
-      <h1 className="text-2xl font-bold text-center mb-6">Schools</h1>
-
+    <div className="p-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
       {Array.isArray(schools) && schools.length > 0 ? (
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-          {schools.map((s) => (
-            <div
-              key={s.id}
-              className="border rounded-xl overflow-hidden shadow-md bg-white hover:shadow-lg transition"
-            >
-              <div className="h-48 bg-gray-100">
-                <img
-                  src={s.image}
-                  alt={s.name}
-                  className="w-full h-48 object-cover"
-                />
-              </div>
-              <div className="p-4 space-y-1">
-                <h2 className="text-lg font-bold text-gray-800">{s.name}</h2>
-                <p className="text-gray-600 text-sm">{s.address}</p>
-                <p className="text-gray-600 text-sm">{s.city}</p>
-              </div>
+        schools.map((s) => (
+          <div key={s.id} className="border rounded-lg overflow-hidden shadow hover:shadow-md transition">
+            <div className="h-44 bg-gray-100">
+              <img src={s.image} alt={s.name} className="w-full h-44 object-cover" />
             </div>
-          ))}
-        </div>
+            <div className="p-4">
+              <h2 className="text-lg font-bold">{s.name}</h2>
+              <p className="text-gray-600">{s.address}</p>
+              <p className="text-gray-600">{s.city}</p>
+            </div>
+          </div>
+        ))
       ) : (
-        <p className="text-center text-gray-500">No schools found</p>
+        <p>No schools found</p>
       )}
     </div>
   );
